@@ -1,0 +1,5 @@
+GET http://localhost:8080/contacts
+
+GET https://cse341-z2vv.onrender.com/contacts
+
+GET https://cse341-z2vv.onrender.com/contacts/695fe9fe990ea5909a3530d7
