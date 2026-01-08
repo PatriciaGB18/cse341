@@ -6,27 +6,29 @@ require('dotenv').config();
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger.json');
 
-
-// Importing the route files
-const contactRoutes = require('./routes/contacts');
-
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-
+// 1. Inicialize o app primeiro
 const app = express();
+
+// 2. Defina a porta e variáveis globais
 const port = process.env.PORT || 8080; 
 let db;
 
-// Middleware
+// 3. Importe as rotas
+const contactRoutes = require('./routes/contacts');
+
+// 4. Middlewares Globais
 app.use(cors());
 app.use(express.static('frontend'));
 app.use(express.json());
 
-// Root route to serve the HTML file
+// 5. Configuração do Swagger (Agora o 'app' já existe!)
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
+// 6. Rotas principais
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'frontend', 'index.html'));
 });
 
-// Professional data route (from the first activity)
 app.get('/professional', async (req, res) => {
   try {
     const data = await db.collection('professionals').findOne();
@@ -36,9 +38,10 @@ app.get('/professional', async (req, res) => {
   }
 });
 
-// Database connection function
+// 7. Função de conexão com o banco
 async function connectDB() {
   try {
+    // Certifique-se que MONGODB_URI está nas Environment Variables do Render
     const client = new MongoClient(process.env.MONGODB_URI);
     await client.connect();
     db = client.db('cse341'); 
@@ -49,12 +52,12 @@ async function connectDB() {
   }
 }
 
-// Initialize database and start the server
+// 8. Inicialização
 connectDB().then(() => {
-    // Mount the contacts routes
+    // Monta as rotas de contatos passando o db
     app.use('/contacts', contactRoutes(db));
 
     app.listen(port, () => {
-        console.log(`🚀 Server is running on http://localhost:${port}`);
+        console.log(`🚀 Server is running on port ${port}`);
     });
 });
