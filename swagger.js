@@ -5,12 +5,12 @@ const doc = {
     title: 'Contacts API',
     description: 'CSE341 Contacts Project API'
   },
-  host: 'https://cse341-z2vv.onrender.com',
-  schemes: ['http']
+  
+  host: 'cse341-z2vv.onrender.com', 
+  schemes: ['https'] 
 };
 
 const outputFile = './swagger.json';
 const endpointsFiles = ['./index.js'];
 
-// Generate swagger.json
 swaggerAutogen(outputFile, endpointsFiles, doc);
