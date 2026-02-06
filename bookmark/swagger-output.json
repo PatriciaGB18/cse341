@@ -5,7 +5,7 @@
     "description": "API for managing books, authors, and genres in a library system.",
     "version": "1.0.0"
   },
-  "host": "localhost:8080",
+  "host": "cse341-z2vv.onrender.com",
   "basePath": "/",
   "schemes": [
     "http",

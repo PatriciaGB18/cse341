@@ -5,7 +5,7 @@ const doc = {
     title: 'Bookmark Library API',
     description: 'API for managing books, authors, and genres in a library system.',
   },
-  host: 'localhost:8080',
+  host: 'cse341-z2vv.onrender.com',
   schemes: ['http', 'https'],
 };
 
