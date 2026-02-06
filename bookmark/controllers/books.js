@@ -38,6 +38,11 @@ const createBook = async (req, res) => {
 };
 
 const updateBook = async (req, res) => {
+  /* #swagger.parameters['body'] = {
+            in: 'body',
+            description: 'Update book information',
+            schema: { $ref: '#/definitions/Book' }
+    } */
   try {
     const updatedBook = await Book.findByIdAndUpdate(req.params.id, req.body, { new: true });
     if (!updatedBook) return res.status(404).json({ message: 'Book not found' });

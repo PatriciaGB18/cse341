@@ -28,7 +28,7 @@ const bookSchema = new mongoose.Schema({
     required: [true, 'Author ID is required']
   },
   genreId: {
-    type: String, // Futuramente poderá ser um ObjectId da coleção Genres
+    type: String, 
     required: [true, 'Genre ID is required']
   }
 });

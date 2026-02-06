@@ -213,6 +213,14 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Update book information",
+            "schema": {
+              "$ref": "#/definitions/Book"
+            }
           }
         ],
         "responses": {
