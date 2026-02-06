@@ -217,9 +217,39 @@
           {
             "name": "body",
             "in": "body",
-            "description": "Update book information",
+            "description": "Update book details",
             "schema": {
-              "$ref": "#/definitions/Book"
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string",
+                  "example": "New Title"
+                },
+                "isbn": {
+                  "type": "string",
+                  "example": "978-0000000000"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "New Description"
+                },
+                "price": {
+                  "type": "number",
+                  "example": 49.9
+                },
+                "stockQuantity": {
+                  "type": "number",
+                  "example": 10
+                },
+                "authorId": {
+                  "type": "string",
+                  "example": "64b1f... (ObjectId)"
+                },
+                "genreId": {
+                  "type": "string",
+                  "example": "Fiction"
+                }
+              }
             }
           }
         ],
