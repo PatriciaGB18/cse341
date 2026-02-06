@@ -6,7 +6,7 @@ const doc = {
     description: 'API for managing books, authors, and genres in a library system.',
   },
   host: 'cse341-z2vv.onrender.com',
-  schemes: ['http', 'https'],
+  schemes: ['https'],
 };
 
 const outputFile = './swagger-output.json';
