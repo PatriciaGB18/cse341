@@ -1,6 +1,5 @@
 const Author = require('../models/authors');
 
-// GET - Retornar todos os autores
 const getAllAuthors = async (req, res) => {
   try {
     const authors = await Author.find();
@@ -10,20 +9,16 @@ const getAllAuthors = async (req, res) => {
   }
 };
 
-// GET - Retornar um único autor por ID
 const getSingleAuthor = async (req, res) => {
   try {
     const author = await Author.findById(req.params.id);
-    if (!author) {
-      return res.status(404).json({ message: 'Author not found' });
-    }
+    if (!author) return res.status(404).json({ message: 'Author not found' });
     res.status(200).json(author);
   } catch (error) {
     res.status(500).json({ message: 'Error retrieving author', error: error.message });
   }
 };
 
-// POST - Criar um novo autor
 const createAuthor = async (req, res) => {
   try {
     const newAuthor = new Author({
@@ -39,40 +34,24 @@ const createAuthor = async (req, res) => {
   }
 };
 
-// PUT - Atualizar um autor por ID
 const updateAuthor = async (req, res) => {
   try {
-    const updatedAuthor = await Author.findByIdAndUpdate(
-      req.params.id,
-      req.body,
-      { new: true, runValidators: true }
-    );
-    if (!updatedAuthor) {
-      return res.status(404).json({ message: 'Author not found' });
-    }
-    res.status(204).send(); // 204 No Content é comum para PUT de sucesso
+    const updatedAuthor = await Author.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
+    if (!updatedAuthor) return res.status(404).json({ message: 'Author not found' });
+    res.status(204).send();
   } catch (error) {
     res.status(400).json({ message: 'Error updating author', error: error.message });
   }
 };
 
-// DELETE - Remover um autor por ID
 const deleteAuthor = async (req, res) => {
   try {
     const deletedAuthor = await Author.findByIdAndDelete(req.params.id);
-    if (!deletedAuthor) {
-      return res.status(404).json({ message: 'Author not found' });
-    }
+    if (!deletedAuthor) return res.status(404).json({ message: 'Author not found' });
     res.status(200).json({ message: 'Author deleted successfully' });
   } catch (error) {
     res.status(500).json({ message: 'Error deleting author', error: error.message });
   }
 };
 
-module.exports = {
-  getAllAuthors,
-  getSingleAuthor,
-  createAuthor,
-  updateAuthor,
-  deleteAuthor
-};
+module.exports = { getAllAuthors, getSingleAuthor, createAuthor, updateAuthor, deleteAuthor };

@@ -38,19 +38,6 @@ const createBook = async (req, res) => {
 };
 
 const updateBook = async (req, res) => {
-  /* #swagger.parameters['body'] = {
-            in: 'body',
-            description: 'Update book details',
-            schema: {
-                title: 'New Title',
-                isbn: '978-0000000000',
-                description: 'New Description',
-                price: 49.90,
-                stockQuantity: 10,
-                authorId: '64b1f... (ObjectId)',
-                genreId: 'Fiction'
-            }
-    } */
   try {
     const updatedBook = await Book.findByIdAndUpdate(req.params.id, req.body, { new: true });
     if (!updatedBook) return res.status(404).json({ message: 'Book not found' });

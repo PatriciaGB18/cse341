@@ -1,11 +1,16 @@
 const express = require('express');
 const router = express.Router();
 const booksController = require('../controllers/books');
+const { bookValidationRules, validate } = require('../middleware/validator');
+const { isAuthenticated } = require('../middleware/authenticate');
+
 
 router.get('/', booksController.getAllBooks);
 router.get('/:id', booksController.getSingleBook);
-router.post('/', booksController.createBook);
-router.put('/:id', booksController.updateBook);
-router.delete('/:id', booksController.deleteBook);
+
+
+router.post('/', isAuthenticated, bookValidationRules(), validate, booksController.createBook);
+router.put('/:id', isAuthenticated, bookValidationRules(), validate, booksController.updateBook);
+router.delete('/:id', isAuthenticated, booksController.deleteBook);
 
 module.exports = router;
